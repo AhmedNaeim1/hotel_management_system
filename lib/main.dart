@@ -51,8 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.admin_panel_settings),
               label: const Text('Admin'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple,
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.deepPurple,
                 minimumSize: const Size(200, 50),
               ),
             ),
@@ -87,8 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.manage_accounts),
               label: const Text('Manager'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple,
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.deepPurple,
                 minimumSize: const Size(200, 50),
               ),
             ),
@@ -100,8 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.person),
               label: const Text('Customer'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple,
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.deepPurple,
                 minimumSize: const Size(200, 50),
               ),
             ),

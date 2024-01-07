@@ -15,13 +15,12 @@ class ReceptionistPage extends StatefulWidget {
 class _ReceptionistPageState extends State<ReceptionistPage> {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _roomIDController = TextEditingController();
-    final TextEditingController _customerIdController = TextEditingController();
-    final TextEditingController _nameController = TextEditingController();
+    final TextEditingController roomIDController = TextEditingController();
+    final TextEditingController customerIdController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
 
-    final TextEditingController _checkInDateController =
-        TextEditingController();
-    final TextEditingController _checkOutDateController =
+    final TextEditingController checkInDateController = TextEditingController();
+    final TextEditingController checkOutDateController =
         TextEditingController();
 
     String responseText = '';
@@ -44,26 +43,26 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                         children: <Widget>[
                           // Room Section
                           TextField(
-                            controller: _roomIDController,
+                            controller: roomIDController,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Room ID',
                             ),
                             onChanged: (String value) {
-                              _roomIDController.text = value;
+                              roomIDController.text = value;
                             },
                           ),
 
                           const SizedBox(height: 10),
                           // Customer Section
                           TextField(
-                            controller: _customerIdController,
+                            controller: customerIdController,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Customer ID',
                             ),
                             onChanged: (String value) {
-                              _customerIdController.text = value;
+                              customerIdController.text = value;
                             },
                           ),
                           const SizedBox(height: 10),
@@ -72,26 +71,26 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                             children: [
                               Expanded(
                                 child: TextField(
-                                  controller: _checkInDateController,
+                                  controller: checkInDateController,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Check-In Date',
                                   ),
                                   onChanged: (String value) {
-                                    _checkInDateController.text = value;
+                                    checkInDateController.text = value;
                                   },
                                 ),
                               ),
                               const SizedBox(width: 10),
                               Expanded(
                                 child: TextField(
-                                  controller: _checkOutDateController,
+                                  controller: checkOutDateController,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Check-Out Date',
                                   ),
                                   onChanged: (String value) {
-                                    _checkOutDateController.text = value;
+                                    checkOutDateController.text = value;
                                   },
                                 ),
                               ),
@@ -117,11 +116,11 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                               },
                               body: jsonEncode(
                                 {
-                                  "roomID": int.parse(_roomIDController.text),
+                                  "roomID": int.parse(roomIDController.text),
                                   "customerID":
-                                      int.parse(_customerIdController.text),
-                                  "checkInDate": _checkInDateController.text,
-                                  "checkOutDate": _checkOutDateController.text,
+                                      int.parse(customerIdController.text),
+                                  "checkInDate": checkInDateController.text,
+                                  "checkOutDate": checkOutDateController.text,
                                 },
                               ),
                             );
@@ -166,13 +165,13 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               TextField(
-                                controller: _nameController,
+                                controller: nameController,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Room Id',
                                 ),
                                 onChanged: (String value) {
-                                  _nameController.text = value;
+                                  nameController.text = value;
                                 },
                               ),
                               const SizedBox(height: 10),
@@ -189,10 +188,10 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                             ),
                             TextButton(
                               onPressed: () async {
-                                print(_nameController.text);
+                                print(nameController.text);
                                 final response = await http.get(
                                   Uri.parse(
-                                      'http://192.168.1.12:8080/api/receptionists/getBookings/${_nameController.text}'),
+                                      'http://192.168.1.12:8080/api/receptionists/getBookings/${nameController.text}'),
                                 );
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
@@ -238,13 +237,13 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               TextField(
-                                controller: _nameController,
+                                controller: nameController,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Room Id',
                                 ),
                                 onChanged: (String value) {
-                                  _nameController.text = value;
+                                  nameController.text = value;
                                 },
                               ),
                               const SizedBox(height: 10),
@@ -261,10 +260,10 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                             ),
                             TextButton(
                               onPressed: () async {
-                                print(_nameController.text);
+                                print(nameController.text);
                                 final response = await http.get(
                                   Uri.parse(
-                                      'http://192.168.1.12:8080/api/receptionists/getRoom/${_nameController.text}'),
+                                      'http://192.168.1.12:8080/api/receptionists/getRoom/${nameController.text}'),
                                 );
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
@@ -340,7 +339,7 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                 }
               },
               icon: const Icon(Icons.receipt_long),
-              label: const Text('Report on rooms'),
+              label: const Text('Report on bookings'),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.deepPurple,

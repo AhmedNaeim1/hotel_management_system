@@ -15,8 +15,8 @@ class AdminPage extends StatefulWidget {
 class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _nameController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     String responseText = '';
     String role = 'Manager';
     return Scaffold(
@@ -36,24 +36,24 @@ class _AdminPageState extends State<AdminPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           TextField(
-                            controller: _nameController,
+                            controller: nameController,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Username',
                             ),
                             onChanged: (String value) {
-                              _nameController.text = value;
+                              nameController.text = value;
                             },
                           ),
                           const SizedBox(height: 10),
                           TextField(
-                            controller: _passwordController,
+                            controller: passwordController,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Password',
                             ),
                             onChanged: (String value) {
-                              _passwordController.text = value;
+                              passwordController.text = value;
                             },
                           ),
                           const SizedBox(height: 10),
@@ -95,7 +95,7 @@ class _AdminPageState extends State<AdminPage> {
                         TextButton(
                           onPressed: () async {
                             //get the response fron the api  and print it
-                            print(_nameController.text);
+                            print(nameController.text);
                             final response = await http.post(
                               Uri.parse(
                                   'http://192.168.1.12:8080/api/admin/addEmployee'),
@@ -103,8 +103,8 @@ class _AdminPageState extends State<AdminPage> {
                                 'Content-Type': 'application/json',
                               },
                               body: jsonEncode({
-                                "name": _nameController.text,
-                                "password": _passwordController.text.toString(),
+                                "name": nameController.text,
+                                "password": passwordController.text.toString(),
                                 "role": role,
                               }),
                             );
@@ -129,8 +129,8 @@ class _AdminPageState extends State<AdminPage> {
               icon: const Icon(Icons.admin_panel_settings),
               label: const Text('Create Staff'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple,
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.deepPurple,
                 minimumSize: const Size(200, 50),
               ),
             ),
@@ -199,13 +199,13 @@ class _AdminPageState extends State<AdminPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               TextField(
-                                controller: _nameController,
+                                controller: nameController,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Staff Id',
                                 ),
                                 onChanged: (String value) {
-                                  _nameController.text = value;
+                                  nameController.text = value;
                                 },
                               ),
                               const SizedBox(height: 10),
@@ -223,10 +223,10 @@ class _AdminPageState extends State<AdminPage> {
                             TextButton(
                               onPressed: () async {
                                 //get the response fron the api  and print it
-                                print(_nameController.text);
+                                print(nameController.text);
                                 final response = await http.get(
                                   Uri.parse(
-                                      'http://192.168.1.12:8080/api/admin/getEmployee/${_nameController.text}'),
+                                      'http://192.168.1.12:8080/api/admin/getEmployee/${nameController.text}'),
                                 );
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
@@ -274,13 +274,13 @@ class _AdminPageState extends State<AdminPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               TextField(
-                                controller: _nameController,
+                                controller: nameController,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Staff Id',
                                 ),
                                 onChanged: (String value) {
-                                  _nameController.text = value;
+                                  nameController.text = value;
                                 },
                               ),
                               const SizedBox(height: 10),
@@ -298,9 +298,9 @@ class _AdminPageState extends State<AdminPage> {
                             TextButton(
                               onPressed: () async {
                                 //get the response fron the api  and print it
-                                print(_nameController.text);
+                                print(nameController.text);
                                 final response = await http.delete(Uri.parse(
-                                    'http://192.168.1.12:8080/api/admin/employee/${_nameController.text}'));
+                                    'http://192.168.1.12:8080/api/admin/employee/${nameController.text}'));
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
                                   print("API Response: ${response.body}");
