@@ -15,10 +15,6 @@ class ManagerPage extends StatefulWidget {
 class _ManagerPageState extends State<ManagerPage> {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _nameController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-    String responseText = '';
-    String role = 'Manager';
     return Scaffold(
       body: Center(
         child: Column(

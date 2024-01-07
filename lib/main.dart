@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_management_system/adminPage.dart';
 import 'package:hotel_management_system/managerPage.dart';
+import 'package:hotel_management_system/receptionistPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,7 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 10),
             //receptionist button
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ReceptionistPage()),
+                );
+              },
               icon: const Icon(Icons.receipt_long),
               label: const Text('Receptionist'),
               style: ElevatedButton.styleFrom(
