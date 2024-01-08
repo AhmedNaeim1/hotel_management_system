@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'constants.dart';
+
 class ManagerPage extends StatefulWidget {
   const ManagerPage({Key? key}) : super(key: key);
 
@@ -25,7 +27,7 @@ class _ManagerPageState extends State<ManagerPage> {
               onPressed: () async {
                 // Perform a get request to get all staff
                 final response = await http.get(
-                  Uri.parse('http://192.168.1.12:8080/api/manager/getBookings'),
+                  Uri.parse('$apiUrl/manager/getBookings'),
                 );
 
                 if (response.statusCode == 200) {

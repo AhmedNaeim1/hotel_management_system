@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'constants.dart';
+
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
 
@@ -97,8 +99,7 @@ class _AdminPageState extends State<AdminPage> {
                             //get the response fron the api  and print it
                             print(nameController.text);
                             final response = await http.post(
-                              Uri.parse(
-                                  'http://192.168.1.12:8080/api/admin/addEmployee'),
+                              Uri.parse('$apiUrl/admin/addEmployee'),
                               headers: <String, String>{
                                 'Content-Type': 'application/json',
                               },
@@ -140,7 +141,7 @@ class _AdminPageState extends State<AdminPage> {
               onPressed: () async {
                 // Perform a get request to get all staff
                 final response = await http.get(
-                  Uri.parse('http://192.168.1.12:8080/api/admin/getEmployees'),
+                  Uri.parse('$apiUrl/admin/getEmployees'),
                 );
 
                 if (response.statusCode == 200) {
@@ -226,7 +227,7 @@ class _AdminPageState extends State<AdminPage> {
                                 print(nameController.text);
                                 final response = await http.get(
                                   Uri.parse(
-                                      'http://192.168.1.12:8080/api/admin/getEmployee/${nameController.text}'),
+                                      '$apiUrl/admin/getEmployee/${nameController.text}'),
                                 );
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
@@ -300,7 +301,7 @@ class _AdminPageState extends State<AdminPage> {
                                 //get the response fron the api  and print it
                                 print(nameController.text);
                                 final response = await http.delete(Uri.parse(
-                                    'http://192.168.1.12:8080/api/admin/employee/${nameController.text}'));
+                                    '$apiUrl/admin/employee/${nameController.text}'));
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
                                   print("API Response: ${response.body}");

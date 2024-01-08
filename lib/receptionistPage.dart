@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hotel_management_system/constants.dart';
 import 'package:http/http.dart' as http;
 
 class ReceptionistPage extends StatefulWidget {
@@ -109,8 +110,7 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                           onPressed: () async {
                             // Perform the post request to create a booking
                             final response = await http.post(
-                              Uri.parse(
-                                  'http://192.168.1.12:8080/api/receptionists/bookRoom'),
+                              Uri.parse('$apiUrl/receptionists/bookRoom'),
                               headers: <String, String>{
                                 'Content-Type': 'application/json',
                               },
@@ -191,7 +191,7 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                                 print(nameController.text);
                                 final response = await http.get(
                                   Uri.parse(
-                                      'http://192.168.1.12:8080/api/receptionists/getBookings/${nameController.text}'),
+                                      '$apiUrl/receptionists/getBookings/${nameController.text}'),
                                 );
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
@@ -263,7 +263,7 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
                                 print(nameController.text);
                                 final response = await http.get(
                                   Uri.parse(
-                                      'http://192.168.1.12:8080/api/receptionists/getRoom/${nameController.text}'),
+                                      '$apiUrl/receptionists/getRoom/${nameController.text}'),
                                 );
                                 if (response.statusCode == 200) {
                                   // Successful response, print the result
@@ -300,8 +300,7 @@ class _ReceptionistPageState extends State<ReceptionistPage> {
               onPressed: () async {
                 // Perform a get request to get all staff
                 final response = await http.get(
-                  Uri.parse(
-                      'http://192.168.1.12:8080/api/receptionists/getBookings'),
+                  Uri.parse('$apiUrl/receptionists/getBookings'),
                 );
 
                 if (response.statusCode == 200) {
